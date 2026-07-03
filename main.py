@@ -1,5 +1,5 @@
 import pygame
-
+import random
 #initial setup
 pygame.init()
 clock = pygame.time.Clock()
@@ -12,7 +12,11 @@ pygame.display.set_caption("Snake")
 #snake
 snake = pygame.Rect(screen_width/2, screen_height/2, 30, 30)
 red = (255, 0, 0)
+black = (0,0,0)
 speed = 5
+#food
+food = pygame.Rect(random.randint(1, 800), random.randint(1, 800), 15, 15)
+pink = (255, 192, 203)
 
 #game loop
 while True:
@@ -29,8 +33,10 @@ while True:
         snake.y -= speed
     if keys[pygame.K_s]:
         snake.y += speed
+    screen.fill(black)
         
     pygame.draw.rect(screen, red, snake)
+    pygame.draw.rect(screen, pink, food)
     #updating window
     pygame.display.flip()
     clock.tick(60)
