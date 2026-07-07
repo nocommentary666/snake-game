@@ -4,8 +4,8 @@ import random
 pygame.init()
 clock = pygame.time.Clock()
 #game window
-screen_height = 800
-screen_width = 800
+screen_height = 700
+screen_width = 700
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Snake")
 
@@ -15,7 +15,7 @@ red = (255, 0, 0)
 black = (0,0,0)
 speed = 5
 #food
-food = pygame.Rect(random.randint(1, 800), random.randint(1, 800), 15, 15)
+food = pygame.Rect(random.randint(1, screen_width), random.randint(1, screen_height), 15, 15)
 pink = (255, 192, 203)
 
 #game loop
@@ -33,6 +33,8 @@ while True:
         snake.y -= speed
     if keys[pygame.K_s]:
         snake.y += speed
+    if snake.colliderect(food):
+        print("snake eat food")
     screen.fill(black)
         
     pygame.draw.rect(screen, red, snake)
