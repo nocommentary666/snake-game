@@ -15,7 +15,7 @@ red = (255, 0, 0)
 black = (0,0,0)
 speed = 5
 #food
-food = pygame.Rect(random.randint(1, screen_width), random.randint(1, screen_height), 15, 15)
+food = pygame.Rect(random.randint(1, screen_width-10), random.randint(1, screen_height-10), 15, 15)
 pink = (255, 192, 203)
 
 #game loop
@@ -24,6 +24,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+    #movement
     keys = pygame.key.get_pressed()
     if keys[pygame.K_d]:
         snake.x += speed
@@ -33,8 +34,11 @@ while True:
         snake.y -= speed
     if keys[pygame.K_s]:
         snake.y += speed
+    #if snake eat food, food spawn random and snake increase length
     if snake.colliderect(food):
-        print("snake eat food")
+        screen.fill(black)
+        food = pygame.Rect(random.randint(1, screen_width-10), random.randint(1, screen_height-10), 15, 15)
+
     screen.fill(black)
         
     pygame.draw.rect(screen, red, snake)
