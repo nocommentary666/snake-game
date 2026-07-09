@@ -10,7 +10,9 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Snake")
 
 #snake
-snake = pygame.Rect(screen_width/2, screen_height/2, 30, 30)
+length = 30
+snake = pygame.Rect(screen_width/2, screen_height/2, length, 30)
+
 red = (255, 0, 0)
 black = (0,0,0)
 speed = 5
@@ -36,8 +38,10 @@ while True:
         snake.y += speed
     #if snake eat food, food spawn random and snake increase length
     if snake.colliderect(food):
+        length +=30
         screen.fill(black)
         food = pygame.Rect(random.randint(1, screen_width-10), random.randint(1, screen_height-10), 15, 15)
+        snake = pygame.Rect(screen_width/2, screen_height/2, length, 30)
 
     screen.fill(black)
         
